@@ -43,6 +43,9 @@ export class UserSettings {
   public discordId?: string;
 
   @Column({ nullable: true })
+  public iOSDeviceToken?: string;
+
+  @Column({ nullable: true })
   public pushbulletAccessToken?: string;
 
   @Column({ nullable: true })
@@ -71,6 +74,7 @@ export class UserSettings {
         const defaultTypes = {
           email: ALL_NOTIFICATIONS,
           discord: 0,
+          ios: 0,
           pushbullet: 0,
           pushover: 0,
           slack: 0,

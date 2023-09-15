@@ -4,6 +4,7 @@ import type { NotificationAgent } from '@server/lib/notifications/agents/agent';
 import DiscordAgent from '@server/lib/notifications/agents/discord';
 import EmailAgent from '@server/lib/notifications/agents/email';
 import GotifyAgent from '@server/lib/notifications/agents/gotify';
+import iOSAgent from '@server/lib/notifications/agents/ios';
 import LunaSeaAgent from '@server/lib/notifications/agents/lunasea';
 import PushbulletAgent from '@server/lib/notifications/agents/pushbullet';
 import PushoverAgent from '@server/lib/notifications/agents/pushover';
@@ -409,6 +410,40 @@ notificationRoutes.post('/gotify/test', async (req, res, next) => {
     return next({
       status: 500,
       message: 'Failed to send Gotify notification.',
+    });
+  }
+});
+
+notificationRoutes.get('/ios', (_req, res) => {
+  const settings = getSettings();
+
+  res.status(200).json(settings.notifications.agents.ios);
+});
+
+notificationRoutes.post('/ios', (req, res) => {
+  const settings = getSettings();
+
+  settings.notifications.agents.ios = req.body;
+  settings.save();
+
+  res.status(200).json(settings.notifications.agents.ios);
+});
+
+notificationRoutes.post('/ios/test', async (req, res, next) => {
+  if (!req.user) {
+    return next({
+      status: 500,
+      message: 'User information is missing from the request.',
+    });
+  }
+
+  const iosAgent = new iOSAgent(req.body);
+  if (await sendTestNotification(iosAgent, req.user)) {
+    return res.status(204).send();
+  } else {
+    return next({
+      status: 500,
+      message: 'Failed to send iOS notification.',
     });
   }
 });

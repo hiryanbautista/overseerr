@@ -271,6 +271,7 @@ userSettingsRoutes.get<{ id: string }, UserSettingsNotificationsResponse>(
             ? settings.discord.types
             : 0,
         discordId: user.settings?.discordId,
+        iOSDeviceToken: user.settings?.iOSDeviceToken,
         pushbulletAccessToken: user.settings?.pushbulletAccessToken,
         pushoverApplicationToken: user.settings?.pushoverApplicationToken,
         pushoverUserKey: user.settings?.pushoverUserKey,
@@ -315,6 +316,7 @@ userSettingsRoutes.post<{ id: string }, UserSettingsNotificationsResponse>(
           user: req.user,
           pgpKey: req.body.pgpKey,
           discordId: req.body.discordId,
+          iOSDeviceToken: req.body.iOSDeviceToken,
           pushbulletAccessToken: req.body.pushbulletAccessToken,
           pushoverApplicationToken: req.body.pushoverApplicationToken,
           pushoverUserKey: req.body.pushoverUserKey,
@@ -325,6 +327,7 @@ userSettingsRoutes.post<{ id: string }, UserSettingsNotificationsResponse>(
       } else {
         user.settings.pgpKey = req.body.pgpKey;
         user.settings.discordId = req.body.discordId;
+        user.settings.iOSDeviceToken = req.body.iOSDeviceToken;
         user.settings.pushbulletAccessToken = req.body.pushbulletAccessToken;
         user.settings.pushoverApplicationToken =
           req.body.pushoverApplicationToken;
@@ -343,6 +346,7 @@ userSettingsRoutes.post<{ id: string }, UserSettingsNotificationsResponse>(
       return res.status(200).json({
         pgpKey: user.settings?.pgpKey,
         discordId: user.settings?.discordId,
+        iOSDeviceToken: user.settings.iOSDeviceToken,
         pushbulletAccessToken: user.settings?.pushbulletAccessToken,
         pushoverApplicationToken: user.settings?.pushoverApplicationToken,
         pushoverUserKey: user.settings?.pushoverUserKey,
