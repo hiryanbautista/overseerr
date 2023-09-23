@@ -103,6 +103,10 @@ export class UserSettings {
           values.webpush = ALL_NOTIFICATIONS;
         }
 
+        if (values.ios == null) {
+          values.ios = ALL_NOTIFICATIONS;
+        }
+
         return values;
       },
       to: (value: Partial<NotificationAgentTypes>): string | null => {
