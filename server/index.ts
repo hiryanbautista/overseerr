@@ -8,6 +8,7 @@ import notificationManager from '@server/lib/notifications';
 import DiscordAgent from '@server/lib/notifications/agents/discord';
 import EmailAgent from '@server/lib/notifications/agents/email';
 import GotifyAgent from '@server/lib/notifications/agents/gotify';
+import iOSAgent from '@server/lib/notifications/agents/ios';
 import LunaSeaAgent from '@server/lib/notifications/agents/lunasea';
 import PushbulletAgent from '@server/lib/notifications/agents/pushbullet';
 import PushoverAgent from '@server/lib/notifications/agents/pushover';
@@ -82,6 +83,7 @@ app
 
     // Register Notification Agents
     notificationManager.registerAgents([
+      new iOSAgent(),
       new DiscordAgent(),
       new EmailAgent(),
       new GotifyAgent(),

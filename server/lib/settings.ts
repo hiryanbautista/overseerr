@@ -212,6 +212,7 @@ export enum NotificationAgentKey {
   DISCORD = 'discord',
   EMAIL = 'email',
   GOTIFY = 'gotify',
+  IOS = 'ios',
   PUSHBULLET = 'pushbullet',
   PUSHOVER = 'pushover',
   SLACK = 'slack',
@@ -224,6 +225,7 @@ interface NotificationAgents {
   discord: NotificationAgentDiscord;
   email: NotificationAgentEmail;
   gotify: NotificationAgentGotify;
+  ios: NotificationAgentConfig;
   lunasea: NotificationAgentLunaSea;
   pushbullet: NotificationAgentPushbullet;
   pushover: NotificationAgentPushover;
@@ -392,6 +394,10 @@ class Settings {
               url: '',
               token: '',
             },
+          },
+          ios: {
+            enabled: false,
+            options: {},
           },
         },
       },

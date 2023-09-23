@@ -25,6 +25,7 @@ export interface UserSettingsNotificationsResponse {
   discordEnabled?: boolean;
   discordEnabledTypes?: number;
   discordId?: string;
+  iOSDeviceToken?: string;
   pushbulletAccessToken?: string;
   pushoverApplicationToken?: string;
   pushoverUserKey?: string;

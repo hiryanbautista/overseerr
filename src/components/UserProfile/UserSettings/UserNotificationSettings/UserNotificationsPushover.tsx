@@ -88,6 +88,7 @@ const UserPushoverSettings = () => {
           await axios.post(`/api/v1/user/${user?.id}/settings/notifications`, {
             pgpKey: data?.pgpKey,
             discordId: data?.discordId,
+            iOSDeviceToken: data?.iOSDeviceToken,
             pushbulletAccessToken: data?.pushbulletAccessToken,
             pushoverApplicationToken: values.pushoverApplicationToken,
             pushoverUserKey: values.pushoverUserKey,

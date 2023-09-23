@@ -66,6 +66,7 @@ const UserEmailSettings = () => {
           await axios.post(`/api/v1/user/${user?.id}/settings/notifications`, {
             pgpKey: values.pgpKey,
             discordId: data?.discordId,
+            iOSDeviceToken: data?.iOSDeviceToken,
             pushbulletAccessToken: data?.pushbulletAccessToken,
             pushoverApplicationToken: data?.pushoverApplicationToken,
             pushoverUserKey: data?.pushoverUserKey,
