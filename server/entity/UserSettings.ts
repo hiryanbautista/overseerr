@@ -55,6 +55,9 @@ export class UserSettings {
   public pushoverUserKey?: string;
 
   @Column({ nullable: true })
+  public pushoverSound?: string;
+
+  @Column({ nullable: true })
   public telegramChatId?: string;
 
   @Column({ nullable: true })
