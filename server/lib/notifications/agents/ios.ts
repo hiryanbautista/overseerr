@@ -192,6 +192,7 @@ class iOSAgent
           mediaType: payload.media?.mediaType,
         };
 
+        note.badge = 0;
         note.topic = 'io.ryanbautista.Overseerr';
 
         await apnProvider.send(note, tokens);
