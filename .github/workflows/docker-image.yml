@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to DockerHub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v4
+
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker Image
+        uses: docker/build-push-action@v5.0.0
+        with: 
+          push: true
+          tags: ryanbautista97/overseerr-ios:latest, ryanbautista97/overseerr-ios:v${{ vars.OVERSEERR_MAJOR }}.0.${{ vars.OVERSEERR_MINOR }}
+
+      - name: Update minor variable
+        uses: action-pack/increment@v2
+        with:
+          name: 'OVERSEERR_MINOR'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
